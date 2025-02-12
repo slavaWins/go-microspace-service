@@ -1,0 +1,64 @@
+definitions:
+  gjmt_models.Response-gjmt_models_User:
+    properties:
+      error:
+        type: string
+      isSuccess:
+        type: boolean
+      value:
+        $ref: '#/definitions/gjmt_models.User'
+    type: object
+  gjmt_models.ResponseErrorType:
+    properties:
+      error:
+        type: string
+      isSuccess:
+        type: boolean
+      value:
+        type: string
+    type: object
+  gjmt_models.User:
+    description: Может бысть расширена в других сервисах
+    properties:
+      created_at:
+        type: string
+      email:
+        description: updated_at time.Time
+        type: string
+      id:
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: Микросервис
+  title: Post-Service API
+  version: "1.0"
+paths:
+  /user:
+    get:
+      consumes:
+      - application/json
+      description: Только с jwt токеном
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gjmt_models.Response-gjmt_models_User'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/gjmt_models.ResponseErrorType'
+      security:
+      - Bearer: []
+      summary: Проверка что пользователь авторизирован
+      tags:
+      - Auth
+securityDefinitions:
+  Bearer:
+    description: Jwt Токен пользователя
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

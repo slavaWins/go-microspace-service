@@ -1,0 +1,22 @@
+version: '3.4'
+
+networks:
+    main-network:
+services:
+    go-service:
+        build:
+            context: ./
+        container_name: go-service
+        restart: unless-stopped
+        working_dir: /var/www/app
+        environment:
+            APP_NAME: Test
+        ports:
+            - 8081:8081
+        volumes:
+            - ./:/var/www/app
+        networks:
+            - main-network
+volumes:
+    nginx:
+    app:
