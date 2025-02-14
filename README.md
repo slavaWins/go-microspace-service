@@ -1,7 +1,7 @@
 <div align="center">
 
 <h1> go-microspace-service </h1>
- <b>gin</b> | <b>swaggerUi</b> | <b>jwt auth</b> | <b>Docker</b>
+ <b>fiber</b> | <b>swaggerUi</b> | <b>jwt auth</b> | <b>Docker</b>
 </div>
  
 ## About
