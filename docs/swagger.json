@@ -1,8 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Микросервис",
-        "title": "Post-Service API",
+        "title": "API",
         "contact": {},
         "version": "1.0"
     },
@@ -24,7 +23,7 @@
                 "tags": [
                     "Auth"
                 ],
-                "summary": "Проверка что пользователь авторизирован",
+                "summary": "Проверка что пользователь авторизирован, получение профиля",
                 "responses": {
                     "200": {
                         "description": "OK",

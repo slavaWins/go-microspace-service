@@ -30,8 +30,7 @@ definitions:
     type: object
 info:
   contact: {}
-  description: Микросервис
-  title: Post-Service API
+  title: API
   version: "1.0"
 paths:
   /user:
@@ -52,7 +51,7 @@ paths:
             $ref: '#/definitions/gjmt_models.ResponseErrorType'
       security:
       - Bearer: []
-      summary: Проверка что пользователь авторизирован
+      summary: Проверка что пользователь авторизирован, получение профиля
       tags:
       - Auth
 securityDefinitions:

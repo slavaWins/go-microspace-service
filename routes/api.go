@@ -1,17 +1,15 @@
 package routes
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v3"
 	"github.com/slavaWins/go-jwt-microservice-template/pkg/gjmt_midlwares"
-	users_controller "post-service/controllers/users"
+	users_controller "go-microspace-service/controllers/users"
 )
 
-func ApiRoutes(r *gin.Engine) {
+func ApiRoutes(r *fiber.App) {
 
-	protected := r.Group("/")
-	protected.Use(gjmt_midlwares.AuthMiddleware())
-	{
-		protected.GET("/user", users_controller.GetUser)
-	}
+	onlyUserGroup := r.Group("/user", gjmt_midlwares.AuthMiddleware())
+	onlyUserGroup.Get("/", users_controller.GetUser)
+	onlyUserGroup.Get("/profile", users_controller.GetUser)
 
 }

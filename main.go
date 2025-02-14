@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
+	"github.com/Flussen/swagger-fiber-v3"
+	"github.com/gofiber/fiber/v3"
 	"github.com/joho/godotenv"
 	"github.com/slavaWins/go-jwt-microservice-template/pkg/gjmt_db_service"
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
+	"go-microspace-service/docs"
+	_ "go-microspace-service/docs" // Нужен для подключения сгенерированных Swagger-документов
+	"go-microspace-service/pkg/db_service"
+	"go-microspace-service/routes"
+	"log"
 	"os"
-	"post-service/docs"
-	_ "post-service/docs" // Нужен для подключения сгенерированных Swagger-документов
-	"post-service/pkg/db_service"
-	"post-service/routes"
 )
 
 //go:generate swag init --parseDependency --parseInternal --parseDepth 2
@@ -43,7 +43,7 @@ func main() {
 
 	db_service.Migrate()
 
-	r := gin.Default()
+	r := fiber.New()
 
 	routes.ApiRoutes(r)
 
@@ -53,9 +53,10 @@ func main() {
 
 		docs.SwaggerInfo.BasePath = os.Getenv("SWAGGER_USE_CUSTOM_BASEPATH")
 
-		r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+		r.Get("/swagger/*", swagger.HandlerDefault)
+		//r.Get("/swagger/*any", fiberSwagger.WrapHandler(swaggerFiles.Handler))
 	}
 
-	r.Run(":" + os.Getenv("APP_PORT"))
+	log.Fatal(r.Listen(":" + os.Getenv("APP_PORT")))
 
 }

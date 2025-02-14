@@ -32,7 +32,7 @@ const docTemplate = `{
                 "tags": [
                     "Auth"
                 ],
-                "summary": "Проверка что пользователь авторизирован",
+                "summary": "Проверка что пользователь авторизирован, получение профиля",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -112,8 +112,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "Post-Service API",
-	Description:      "Микросервис",
+	Title:            "API",
+	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

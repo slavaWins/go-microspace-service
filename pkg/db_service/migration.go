@@ -3,7 +3,7 @@ package db_service
 import (
 	"fmt"
 	"github.com/slavaWins/go-jwt-microservice-template/pkg/gjmt_db_service"
-	"post-service/models"
+	"go-microspace-service/models"
 )
 
 func Migrate() {
